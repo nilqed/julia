@@ -2183,6 +2183,11 @@ end
     @deprecate SSHCredentials SSHCredential false
 end
 
+# PR #24647
+@deprecate_binding Complex32  ComplexF16
+@deprecate_binding Complex64  ComplexF32
+@deprecate_binding Complex128 ComplexF64
+
 # END 0.7 deprecations
 
 # BEGIN 1.0 deprecations

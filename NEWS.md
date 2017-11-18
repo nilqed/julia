@@ -735,6 +735,10 @@ Deprecated or removed
   * `cumsum`, `cumprod`, `accumulate`, and their mutating versions now require a `dim`
     argument instead of defaulting to using the first dimension ([#24684]).
 
+  * The aliases `Complex32`, `Complex64` and `Complex128` have been deprecated in favor of `ComplexF16`,
+     `ComplexF32` and `ComplexF64` respectively (#24647).
+
+
 Command-line option changes
 ---------------------------
 
