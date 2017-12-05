@@ -130,7 +130,7 @@ function Base.read!(io::IO, cred::GitCredential)
             # https://git-scm.com/docs/git-credential#git-credential-codeurlcode
             copy!(cred, parse(GitCredential, value))
         else
-            setfield!(cred, Symbol(key), Nullable(String(value)))
+            Base.setproperty!(cred, Symbol(key), Nullable(String(value)))
         end
     end
 
