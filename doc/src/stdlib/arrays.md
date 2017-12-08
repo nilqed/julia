@@ -116,6 +116,7 @@ Base.cat
 Base.vcat
 Base.hcat
 Base.hvcat
+Base.vect
 Base.flipdim
 Base.circshift
 Base.circshift!
