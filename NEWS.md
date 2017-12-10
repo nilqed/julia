@@ -738,6 +738,8 @@ Deprecated or removed
   * The `sum_kbn` and `cumsum_kbn` functions have been moved to the
     [KahanSummation](https://github.com/JuliaMath/KahanSummation.jl) package ([#24869]).
 
+  * `Associative` has been deprecated in favor of `AbstractDict` ([#??]).
+
 Command-line option changes
 ---------------------------
 
