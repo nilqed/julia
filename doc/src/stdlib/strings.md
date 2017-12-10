@@ -59,8 +59,6 @@ Base.lcfirst
 Base.join
 Base.chop
 Base.chomp
-Base.ind2chr
-Base.chr2ind
 Base.thisind
 Base.nextind
 Base.prevind

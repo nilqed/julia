@@ -2186,6 +2186,10 @@ end
 @deprecate_moved sum_kbn "KahanSummation"
 @deprecate_moved cumsum_kbn "KahanSummation"
 
+# PR #24999
+@deprecate ind2chr(s::AbstractString, i::Integer) length(s, 1, i)
+@deprecate chr2ind(s::AbstractString, n::Integer) nextind(s, 0, n)
+
 # END 0.7 deprecations
 
 # BEGIN 1.0 deprecations
