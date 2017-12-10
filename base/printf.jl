@@ -1,7 +1,7 @@
 # This file is a part of Julia. License is MIT: https://julialang.org/license
 
 module Printf
-using Base: Grisu, GMP
+using Base: Grisu, GMP, lowercase, textwidth
 export @printf, @sprintf
 
 ### printf formatter generation ###

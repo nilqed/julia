@@ -9,6 +9,8 @@ import ..Terminals: raw!, width, height, cmove, getX,
 
 import Base: ensureroom, peek, show, AnyDict, position
 
+using Base: lowercase, uppercase, ucfirst, textwidth
+
 abstract type TextInterface end
 abstract type ModeState end
 

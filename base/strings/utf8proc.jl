@@ -3,14 +3,13 @@
 # Various Unicode functionality from the utf8proc library
 module UTF8proc
 
-import Base: show, ==, hash, string, Symbol, isless, length, eltype, start, next, done, convert, isvalid, lowercase, uppercase, titlecase
+import Base: show, ==, hash, string, Symbol, isless, length, eltype, start, next, done, convert, isvalid
 
-export isgraphemebreak, category_code, category_abbrev, category_string
-
-# also exported by Base:
-export normalize_string, graphemes, is_assigned_char, textwidth, isvalid,
-   islower, isupper, isalpha, isdigit, isnumber, isalnum,
-   iscntrl, ispunct, isspace, isprint, isgraph
+export isgraphemebreak, category_code, category_abbrev, category_string,
+       normalize_string, graphemes, is_assigned_char, textwidth, isascii,
+       islower, isupper, isalpha, isdigit, isxdigit, isnumber, isalnum,
+       iscntrl, ispunct, isspace, isprint, isgraph,
+       lowercase, uppercase, titlecase, lcfirst, ucfirst
 
 # whether codepoints are valid Unicode scalar values, i.e. 0-0xd7ff, 0xe000-0x10ffff
 
@@ -532,6 +531,139 @@ true
 ```
 """
 isgraph(c::Char) = (UTF8PROC_CATEGORY_LU <= category_code(c) <= UTF8PROC_CATEGORY_SO)
+
+"""
+    isascii(c::Union{Char,AbstractString}) -> Bool
+
+Test whether a character belongs to the ASCII character set, or whether this is true for
+all elements of a string.
+
+# Examples
+```jldoctest
+julia> isascii('a')
+true
+
+julia> isascii('α')
+false
+
+julia> isascii("abc")
+true
+
+julia> isascii("αβγ")
+false
+```
+"""
+isascii(c::Char) = c < Char(0x80)
+isascii(s::AbstractString) = all(isascii, s)
+
+"""
+    isxdigit(c::Char) -> Bool
+
+Test whether a character is a valid hexadecimal digit. Note that this does not
+include `x` (as in the standard `0x` prefix).
+
+# Examples
+```jldoctest
+julia> isxdigit('a')
+true
+
+julia> isxdigit('x')
+false
+```
+"""
+isxdigit(c::Char) = '0'<=c<='9' || 'a'<=c<='f' || 'A'<=c<='F'
+
+## uppercase, lowercase, and titlecase transformations ##
+
+"""
+    uppercase(s::AbstractString)
+
+Return `s` with all characters converted to uppercase.
+
+# Examples
+```jldoctest
+julia> uppercase("Julia")
+"JULIA"
+```
+"""
+uppercase(s::AbstractString) = map(uppercase, s)
+
+"""
+    lowercase(s::AbstractString)
+
+Return `s` with all characters converted to lowercase.
+
+# Examples
+```jldoctest
+julia> lowercase("STRINGS AND THINGS")
+"strings and things"
+```
+"""
+lowercase(s::AbstractString) = map(lowercase, s)
+
+"""
+    titlecase(s::AbstractString)
+
+Capitalize the first character of each word in `s`.
+See also [`ucfirst`](@ref) to capitalize only the first
+character in `s`.
+
+# Examples
+```jldoctest
+julia> titlecase("the julia programming language")
+"The Julia Programming Language"
+```
+"""
+function titlecase(s::AbstractString)
+    startword = true
+    b = IOBuffer()
+    for c in s
+        if isspace(c)
+            print(b, c)
+            startword = true
+        else
+            print(b, startword ? titlecase(c) : c)
+            startword = false
+        end
+    end
+    return String(take!(b))
+end
+
+"""
+    ucfirst(s::AbstractString)
+
+Return `string` with the first character converted to uppercase
+(technically "title case" for Unicode).
+See also [`titlecase`](@ref) to capitalize the first character of
+every word in `s`.
+
+# Examples
+```jldoctest
+julia> ucfirst("python")
+"Python"
+```
+"""
+function ucfirst(s::AbstractString)
+    isempty(s) && return s
+    c = s[1]
+    tc = titlecase(c)
+    return c==tc ? s : string(tc,s[nextind(s,1):end])
+end
+
+"""
+    lcfirst(s::AbstractString)
+
+Return `string` with the first character converted to lowercase.
+
+# Examples
+```jldoctest
+julia> lcfirst("Julia")
+"julia"
+```
+"""
+function lcfirst(s::AbstractString)
+    isempty(s) || islower(s[1]) ? s : string(lowercase(s[1]),s[nextind(s,1):end])
+end
 
 ############################################################################
 # iterators for grapheme segmentation

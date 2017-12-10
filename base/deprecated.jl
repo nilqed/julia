@@ -2186,6 +2186,32 @@ end
 @deprecate_moved sum_kbn "KahanSummation"
 @deprecate_moved cumsum_kbn "KahanSummation"
 
+# PR #25021
+import .UTF8proc: normalize_string, graphemes, is_assigned_char, textwidth, isascii,
+                  islower, isupper, isalpha, isdigit, isxdigit, isnumber, isalnum,
+                  iscntrl, ispunct, isspace, isprint, isgraph,
+                  lowercase, uppercase, titlecase, lcfirst, ucfirst
+@deprecate_moved normalize_string "Unicode" true true
+@deprecate_moved graphemes "Unicode" true true
+@deprecate_moved is_assigned_char "Unicode" true true
+@deprecate_moved textwidth "Unicode" true true
+@deprecate_moved islower "Unicode" true true
+@deprecate_moved isupper "Unicode" true true
+@deprecate_moved isalpha "Unicode" true true
+@deprecate_moved isdigit "Unicode" true true
+@deprecate_moved isnumber "Unicode" true true
+@deprecate_moved isalnum "Unicode" true true
+@deprecate_moved iscntrl "Unicode" true true
+@deprecate_moved ispunct "Unicode" true true
+@deprecate_moved isspace "Unicode" true true
+@deprecate_moved isprint "Unicode" true true
+@deprecate_moved isgraph "Unicode" true true
+@deprecate_moved lowercase "Unicode" true true
+@deprecate_moved uppercase "Unicode" true true
+@deprecate_moved titlecase "Unicode" true true
+@deprecate_moved lcfirst "Unicode" true true
+@deprecate_moved ucfirst "Unicode" true true
+
 # END 0.7 deprecations
 
 # BEGIN 1.0 deprecations

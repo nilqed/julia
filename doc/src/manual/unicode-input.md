@@ -37,7 +37,7 @@ function unicode_data()
         for line in readlines(unidata)
             id, name, desc = split(line, ";")[[1, 2, 11]]
             codepoint = parse(UInt32, "0x$id")
-            names[codepoint] = titlecase(lowercase(name == "" ? desc : desc == "" ? name : "$name / $desc"))
+            names[codepoint] = Base.titlecase(lowercase(name == "" ? desc : desc == "" ? name : "$name / $desc"))
         end
     end
     return names
