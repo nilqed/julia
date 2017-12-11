@@ -1,7 +1,8 @@
 # This file is a part of Julia. License is MIT: https://julialang.org/license
 
 module Printf
-using Base: Grisu, GMP, lowercase, textwidth
+using Base: Grisu, GMP
+using Base.UTF8proc: lowercase, textwidth
 export @printf, @sprintf
 
 ### printf formatter generation ###
@@ -414,7 +415,7 @@ function gen_e(flags::String, width::Int, precision::Int, c::Char, inside_g::Boo
     blk = ifblk.args[2]
     push!(blk.args, :((len, pt, neg) = args))
     push!(blk.args, :(exp = pt-1))
-    expmark = isupper(c) ? "E" : "e"
+    expmark = UTF8proc.isupper(c) ? "E" : "e"
     if precision==0 && '#' in flags
         expmark = string(".",expmark)
     end

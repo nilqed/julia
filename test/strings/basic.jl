@@ -212,7 +212,7 @@ end
 
     @test done(eachindex("foobar"),7)
     @test eltype(Base.EachStringIndex) == Int
-    @test map(uppercase, "foó") == "FOÓ"
+    @test map(Base.UTF8proc.uppercase, "foó") == "FOÓ"
     @test chr2ind("fóobar",3) == 4
 
     @test Symbol(gstr)==Symbol("12")
@@ -278,7 +278,7 @@ end
     for T in [BigInt, Int8, UInt8, Int16, UInt16, Int32, UInt32, Int64, UInt64, Int128, UInt128, Float64, Float32]
         @test isnull(tryparse(T, "1\0"))
     end
-    let s = Base.normalize_string("tést",:NFKC)
+    let s = Base.UTF8proc.normalize_string("tést",:NFKC)
         @test unsafe_string(Base.unsafe_convert(Cstring, Base.cconvert(Cstring, s))) == s
         @test unsafe_string(convert(Cstring, Symbol(s))) == s
     end

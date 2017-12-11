@@ -2187,10 +2187,6 @@ end
 @deprecate_moved cumsum_kbn "KahanSummation"
 
 # PR #25021
-import .UTF8proc: normalize_string, graphemes, is_assigned_char, textwidth, isascii,
-                  islower, isupper, isalpha, isdigit, isxdigit, isnumber, isalnum,
-                  iscntrl, ispunct, isspace, isprint, isgraph,
-                  lowercase, uppercase, titlecase, lcfirst, ucfirst
 @deprecate_moved normalize_string "Unicode" true true
 @deprecate_moved graphemes "Unicode" true true
 @deprecate_moved is_assigned_char "Unicode" true true

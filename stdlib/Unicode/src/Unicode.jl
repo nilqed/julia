@@ -4,10 +4,10 @@ __precompile__(true)
 
 module Unicode
 
-using Base: normalize_string, graphemes, is_assigned_char, textwidth, isvalid,
-            islower, isupper, isalpha, isdigit, isnumber, isalnum,
-            iscntrl, ispunct, isspace, isprint, isgraph,
-            lowercase, uppercase, titlecase, lcfirst, ucfirst
+using Base.UTF8proc: normalize_string, graphemes, is_assigned_char, textwidth, isvalid,
+                     islower, isupper, isalpha, isdigit, isnumber, isalnum,
+                     iscntrl, ispunct, isspace, isprint, isgraph,
+                     lowercase, uppercase, titlecase, lcfirst, ucfirst
 
 export normalize_string, graphemes, is_assigned_char, textwidth, isvalid,
        islower, isupper, isalpha, isdigit, isnumber, isalnum,

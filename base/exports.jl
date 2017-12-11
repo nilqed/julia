@@ -730,12 +730,10 @@ export
     hex2bytes!,
     ind2chr,
     info,
-    isascii,
     ismatch,
     isvalid,
     join,
     logging,
-    lowercase,
     lpad,
     lstrip,
     match,
@@ -772,7 +770,6 @@ export
     thisind,
     transcode,
     unescape_string,
-    uppercase,
     warn,
 
 # random numbers

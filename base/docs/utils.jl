@@ -3,6 +3,7 @@
 # Text / HTML objects
 
 import Base: print, show, ==, hash
+using Base.UTF8proc
 
 export HTML, @html_str
 
@@ -231,7 +232,8 @@ function matchinds(needle, haystack; acronym = false)
     for (i, char) in enumerate(haystack)
         isempty(chars) && break
         while chars[1] == ' ' shift!(chars) end # skip spaces
-        if lowercase(char) == lowercase(chars[1]) && (!acronym || !isalpha(lastc))
+        if UTF8proc.lowercase(char) == UTF8proc.lowercase(chars[1]) &&
+           (!acronym || !UTF8proc.isalpha(lastc))
             push!(is, i)
             shift!(chars)
         end

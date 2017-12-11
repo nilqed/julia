@@ -5,12 +5,6 @@ module UTF8proc
 
 import Base: show, ==, hash, string, Symbol, isless, length, eltype, start, next, done, convert, isvalid
 
-export isgraphemebreak, category_code, category_abbrev, category_string,
-       normalize_string, graphemes, is_assigned_char, textwidth, isascii,
-       islower, isupper, isalpha, isdigit, isxdigit, isnumber, isalnum,
-       iscntrl, ispunct, isspace, isprint, isgraph,
-       lowercase, uppercase, titlecase, lcfirst, ucfirst
-
 # whether codepoints are valid Unicode scalar values, i.e. 0-0xd7ff, 0xe000-0x10ffff
 
 """
