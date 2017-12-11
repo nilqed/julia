@@ -1072,13 +1072,6 @@ function Matrix()
     return Matrix(uninitialized, 0, 0)
 end
 
-for name in ("alnum", "alpha", "cntrl", "digit", "number", "graph",
-             "lower", "print", "punct", "space", "upper", "xdigit")
-    f = Symbol("is",name)
-    @eval import .UTF8proc: $f
-    @eval @deprecate ($f)(s::AbstractString) all($f, s)
-end
-
 # TODO: remove warning for using `_` in parse_input_line in base/client.jl
 
 # Special functions have been moved to a package

@@ -2,7 +2,7 @@
 
 module Printf
 using Base: Grisu, GMP
-using Base.UTF8proc: lowercase, textwidth
+using Base.UTF8proc: lowercase, textwidth, isupper
 export @printf, @sprintf
 
 ### printf formatter generation ###
@@ -415,7 +415,7 @@ function gen_e(flags::String, width::Int, precision::Int, c::Char, inside_g::Boo
     blk = ifblk.args[2]
     push!(blk.args, :((len, pt, neg) = args))
     push!(blk.args, :(exp = pt-1))
-    expmark = UTF8proc.isupper(c) ? "E" : "e"
+    expmark = isupper(c) ? "E" : "e"
     if precision==0 && '#' in flags
         expmark = string(".",expmark)
     end

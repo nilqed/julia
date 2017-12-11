@@ -1092,7 +1092,7 @@ function ends_with_semicolon(line::AbstractString)
             else
                 # outside of a comment, encountering anything but whitespace
                 # means the semi-colon was internal to the expression
-                UTF8proc.isspace(c) || return false
+                Base.UTF8proc.isspace(c) || return false
             end
         end
         return true

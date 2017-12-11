@@ -66,7 +66,7 @@
         cp, ch, st = cx[i,:]
         @test cp == convert(UInt32, ch)
         @test string(ch) == unescape_string(st)
-        if Base.UTF8proc..isascii(ch) || !Base.UTF8proc.isprint(ch)
+        if Base.UTF8proc.isascii(ch) || !Base.UTF8proc.isprint(ch)
             @test st == escape_string(string(ch))
         end
         for j = 1:size(cx,1)
