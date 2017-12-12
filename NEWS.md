@@ -738,6 +738,8 @@ Deprecated or removed
   * The aliases `Complex32`, `Complex64` and `Complex128` have been deprecated in favor of `ComplexF16`,
      `ComplexF32` and `ComplexF64` respectively (#24647).
 
+  * The `sum_kbn` and `cumsum_kbn` functions have been moved to the
+    [KahanSummation](https://github.com/JuliaMath/KahanSummation.jl) package ([#24869]).
 
 Command-line option changes
 ---------------------------
@@ -1711,3 +1713,4 @@ Command-line option changes
 [#24396]: https://github.com/JuliaLang/julia/issues/24396
 [#24413]: https://github.com/JuliaLang/julia/issues/24413
 [#24653]: https://github.com/JuliaLang/julia/issues/24653
+[#24869]: https://github.com/JuliaLang/julia/issues/24869

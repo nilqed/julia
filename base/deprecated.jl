@@ -2136,7 +2136,6 @@ end
 @deprecate RowVector{T}(n::Tuple{Int,Int}) where {T}    RowVector{T}(uninitialized, n)
 
 @deprecate cumsum(A::AbstractArray)     cumsum(A, 1)
-@deprecate cumsum_kbn(A::AbstractArray) cumsum_kbn(A, 1)
 @deprecate cumprod(A::AbstractArray)    cumprod(A, 1)
 
 # issue #16307
@@ -2187,6 +2186,10 @@ end
 @deprecate_binding Complex32  ComplexF16
 @deprecate_binding Complex64  ComplexF32
 @deprecate_binding Complex128 ComplexF64
+
+# issue #24804
+@deprecate_moved sum_kbn "KahanSummation"
+@deprecate_moved cumsum_kbn "KahanSummation"
 
 # END 0.7 deprecations
 
